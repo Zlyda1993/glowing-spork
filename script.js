@@ -1,13 +1,18 @@
 // Wrap all code that interacts with the DOM in a call to jQuery to ensure that
 // the code isn't run until the browser has finished rendering all the elements
 // in the html.
-var description = $('.description');
 
 var collectData = function (event) {
   event.preventDefault();
 
-  var localStorageHistory = JSON.parse(localStorage.getItem("description")) || []
-  console.log(localStorageHistory);
+  var description = document.querySelector('textarea').value;
+  console.log(description);
+
+
+  // localStorage.setItem("schedule", JSON.stringify(schedule));
+
+  // var localStorageHistory = JSON.parse(localStorage.getItem("description")) || []
+  // console.log(localStorageHistory);
   // TODO: Add a listener for click events on the save button. This code should
   // use the id in the containing time-block as a key to save the user input in
   // local storage. HINT: What does `this` reference in the click listener
@@ -28,8 +33,15 @@ var collectData = function (event) {
   // TODO: Add code to display the current date in the header of the page.
 };
 
+// function showSchedule(){
+//   var finalSchedule = JSON.parse(localStorage.getItem("schedule"));
+//   if(finalSchedule !== null) {
+//     document.querySelector('textarea').textContent = schedule[i];
+//   }
+// }
+
 var date = dayjs().format('dddd, MMMM DD');
 $('#currentDay').text(date);
 
-var button = $('#button');
+var button = $('button');
 button.on("click", collectData);
