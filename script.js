@@ -13,41 +13,64 @@ var collectData = function (event) {
 
   console.log(taskArray);
 
- var stringify = JSON.stringify(taskArray);
+  var stringify = JSON.stringify(taskArray);
 
- localStorage.setItem("taskArray", stringify);
+  localStorage.setItem("taskArray", stringify);
 
- var stringify = localStorage.getItem("taskArray");
+  var stringify = localStorage.getItem("taskArray");
 
- var newTaskArray = JSON.parse(stringify);
+  var newTaskArray = JSON.parse(stringify);
 
- console.log(newTaskArray);
+  console.log(newTaskArray);
 
-//  function updateClassBasedOnTime() {
+};
 
-//  var targetTime = new Date();
-//  var elementTime = new Date();
+function updateHourBasedOnTime() {
 
-//  elementTime.setHours(elementTime.getHours() + 1);
+  var time = [
+    time("#hour-9") = 9,
+    time("#hour-10") = 10,
+    time("#hour-11") = 11,
+    time("#hour-12") = 12,
+    time("#hour-1") = 13,
+    time("#hour-2") = 14,
+    time("#hour-3") = 15,
+    time("#hour-4") = 16,
+    time("#hour-5") = 17]
 
+  var current_time = dayjs().format('hh');
+  current_time = hour.toString();
+  console.log(current_time);
+
+  for (i = 0; i < time.length; i++) {
+
+    if (time[i] < current_time) {
+      element.removeClass("present future").addClass("past");
+    } else if (time[i] > current_time) {
+      element.removeClass("past present").addClass("future");
+    } else {
+      element.removeClass("past future").addClass("present");
+    }
+
+  };
  
-//  var element = $("#timeStatus");
 
-//  if (elementTime < targetTime) {
-//      // Time is in the past
-//      element.removeClass("present future").addClass("past");
-//  } else if (elementTime > targetTime) {
-//      // Time is in the future
-//      element.removeClass("past present").addClass("future");
-//  } else {
-//      // Time is the same (present)
-//      element.removeClass("past future").addClass("present");
-//  }
-// }
-  // Save the data to local storage
-  
+};
 
-  // TODO: Add a listener for click events on the save button. This code should
+var date = dayjs().format('dddd, MMMM DD');
+var date2 = dayjs().format('hh:mm:ss A');
+$('#currentDay').text(date2 + " " + date);
+
+var button = $('button');
+button.on("click", collectData);
+
+$(document).ready(function () {
+  updateHourBasedOnTime();
+});
+
+document.location.reload;
+
+// TODO: Add a listener for click events on the save button. This code should
   // use the id in the containing time-block as a key to save the user input in
   // local storage. HINT: What does `this` reference in the click listener
   // function? How can DOM traversal be used to get the "hour-x" id of the
@@ -65,45 +88,3 @@ var collectData = function (event) {
   // attribute of each time-block be used to do this?
   //
   // TODO: Add code to display the current date in the header of the page.
-};
-
-function updateHourBasedOnTime() {
-
-  var time = Array();
-  time["#hour-9"] = [0900];
-  time["#hour-10"] = [1000];
-  time["#hour-11"] = [1100];
-  time["#hour-12"] = [1200];
-  time["#hour-1"] = [1300];
-  time["hour-2"] = [1400];
-  time["#hour-3"] = [1500];
-  time["#hour-4"] = [1600];
-  time["#hour-5"] = [1700];
-
-  var today_hours = hour[i];
-  var current_time = hour.toString() + minute.toString();
-
-  if(today_hours <= current_time && today_hours[1] > current_time) {
-      return true;
-  }
- 
-  if (today_hours[0] < current_time) {
-      element.removeClass("present future").addClass("past");
-  } else if (today_hours[0] > current_time) {
-      element.removeClass("past present").addClass("future");
-  } else {
-      element.removeClass("past future").addClass("present");
-  }
-
-};
-
-var date = dayjs().format('dddd, MMMM DD');
-var date2 = dayjs().format('hh:mm:ss A');
-$('#currentDay').text(date2 + " " + date);
-
-var button = $('button');
-button.on("click", collectData);
-
-$(document).ready(function () {
-  updateHourBasedOnTime();
-});
