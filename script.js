@@ -13,13 +13,40 @@ var collectData = function (event) {
 
   console.log(taskArray);
 
+ var stringify = JSON.stringify(taskArray);
 
+ localStorage.setItem("taskArray", stringify);
 
+ var stringify = localStorage.getItem("taskArray");
 
-  // localStorage.setItem("schedule", JSON.stringify(schedule));
+ var newTaskArray = JSON.parse(stringify);
 
-  // var localStorageHistory = JSON.parse(localStorage.getItem("description")) || []
-  // console.log(localStorageHistory);
+ console.log(newTaskArray);
+
+//  function updateClassBasedOnTime() {
+
+//  var targetTime = new Date();
+//  var elementTime = new Date();
+
+//  elementTime.setHours(elementTime.getHours() + 1);
+
+ 
+//  var element = $("#timeStatus");
+
+//  if (elementTime < targetTime) {
+//      // Time is in the past
+//      element.removeClass("present future").addClass("past");
+//  } else if (elementTime > targetTime) {
+//      // Time is in the future
+//      element.removeClass("past present").addClass("future");
+//  } else {
+//      // Time is the same (present)
+//      element.removeClass("past future").addClass("present");
+//  }
+// }
+  // Save the data to local storage
+  
+
   // TODO: Add a listener for click events on the save button. This code should
   // use the id in the containing time-block as a key to save the user input in
   // local storage. HINT: What does `this` reference in the click listener
@@ -40,15 +67,43 @@ var collectData = function (event) {
   // TODO: Add code to display the current date in the header of the page.
 };
 
-// function showSchedule(){
-//   var finalSchedule = JSON.parse(localStorage.getItem("schedule"));
-//   if(finalSchedule !== null) {
-//     document.querySelector('textarea').textContent = schedule[i];
-//   }
-// }
+function updateHourBasedOnTime() {
+
+  var time = Array();
+  time["#hour-9"] = [0900];
+  time["#hour-10"] = [1000];
+  time["#hour-11"] = [1100];
+  time["#hour-12"] = [1200];
+  time["#hour-1"] = [1300];
+  time["hour-2"] = [1400];
+  time["#hour-3"] = [1500];
+  time["#hour-4"] = [1600];
+  time["#hour-5"] = [1700];
+
+  var today_hours = hour[i];
+  var current_time = hour.toString() + minute.toString();
+
+  if(today_hours <= current_time && today_hours[1] > current_time) {
+      return true;
+  }
+ 
+  if (today_hours[0] < current_time) {
+      element.removeClass("present future").addClass("past");
+  } else if (today_hours[0] > current_time) {
+      element.removeClass("past present").addClass("future");
+  } else {
+      element.removeClass("past future").addClass("present");
+  }
+
+};
 
 var date = dayjs().format('dddd, MMMM DD');
-$('#currentDay').text(date);
+var date2 = dayjs().format('hh:mm:ss A');
+$('#currentDay').text(date2 + " " + date);
 
 var button = $('button');
 button.on("click", collectData);
+
+$(document).ready(function () {
+  updateHourBasedOnTime();
+});
