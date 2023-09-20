@@ -5,8 +5,15 @@
 var collectData = function (event) {
   event.preventDefault();
 
-  var description = document.querySelector('textarea').value;
-  console.log(description);
+  var taskArray = [];
+
+  $("textarea").each(function () {
+    taskArray.push($(this).val());
+  });
+
+  console.log(taskArray);
+
+
 
 
   // localStorage.setItem("schedule", JSON.stringify(schedule));
