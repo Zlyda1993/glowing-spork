@@ -19,3 +19,11 @@
 # Special Thanks
 
 ## Thank you to rich for helping me understand to try and retrieve my data in an array and target it with a for loop. Thanks to Andrew Allen and Samuel Johnson for helping me work through a few bugs i was dealing with.
+
+# Link to Deployed Application:
+
+##  https://zlyda1993.github.io/glowing-spork/
+
+# Screen Shot of deployed application:
+
+ ![Screenshot of deployed image](./Deployed_Application.png)
